@@ -33,6 +33,7 @@
   color: var(--blue);
   font-size: 2rem;
   font-weight: 700;
+  word-break: break-all;
 }
 
 .repo-item__link:hover {

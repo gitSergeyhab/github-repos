@@ -20,7 +20,7 @@ export const RepoItem: FC<Repo> = ({
     <div className="repo-list__item repo-item">
       <div className="repo-item__block">
         <div className="repo-item__name">
-          <a href={html_url} className="repo-item__link">
+          <a href={html_url} className="repo-item__link" target="_blank">
             {name}
           </a>
           <span className="repo-item__visibility">{visibility}</span>
