@@ -1,0 +1,26 @@
+.marker {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+
+.marker--red {
+  background-color: var(--red);
+}
+
+.marker--yellow {
+  background-color: var(--yellow);
+}
+
+.marker--green {
+  background-color: var(--green);
+}
+
+.marker--blue {
+  background-color: var(--blue);
+}
+
+.marker--other {
+  background-color: var(--gray);
+}

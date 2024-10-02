@@ -1,0 +1,17 @@
+.repo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 1rem;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+@media (max-width: 1024px) {
+  .repo-list {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,134 @@
+.repo-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: solid 2px var(--gray);
+  padding: 1rem;
+  margin: 0;
+  height: 100%;
+  gap: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.repo-item:hover {
+  box-shadow: inset 0 0 0 8px var(--blue-01);
+}
+
+@media (max-width: 1024px) {
+  .repo-item {
+    border: none;
+    border-top: solid 2px var(--gray);
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .repo-item {
+    flex-direction: column;
+  }
+}
+
+.repo-item__link {
+  text-decoration: none;
+  color: var(--blue);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.repo-item__link:hover {
+  text-decoration: underline;
+  color: var(--blue);
+}
+
+.repo-item__name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .repo-item__name {
+    justify-content: center;
+  }
+}
+
+.repo-item__visibility {
+  border: 1px var(--gray) solid;
+  padding: 4px 12px;
+  border-radius: 1rem;
+}
+
+.repo-item__date {
+  color: var(--gray);
+  font-size: 1.2rem;
+}
+
+.repo-item__topic-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+@media (max-width: 768px) {
+  .repo-item__topic-list {
+    justify-content: center;
+  }
+}
+
+.repo-item__topic-item {
+  background: var(--blue-01);
+  padding: 4px 8px;
+  border-radius: 1rem;
+  color: var(--blue);
+}
+
+@media (max-width: 480px) {
+  .repo-item__topic-item {
+    padding: 2px 4px;
+    display: none;
+  }
+  .repo-item__topic-item:nth-child(-n + 3) {
+    display: block;
+  }
+}
+
+.repo-item__block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (max-width: 768) {
+  .repo-item__block {
+    gap: 0.5rem;
+  }
+}
+
+.repo-item__block:first-child {
+  flex-grow: 2;
+}
+
+.repo-item__language {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.repo-item__description {
+  font-size: 1.2rem;
+  margin: 0;
+  text-align: left;
+  color: var(--gray);
+}
+
+@media (max-width: 768px) {
+  .repo-item__description {
+    text-align: center;
+  }
+}
