@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { pageFormDefaultValues, pageFormSchema } from "./const";
@@ -10,7 +11,11 @@ import { DynamicApproveList } from "./lists/dynamic-approve-list";
 import { DynamicTextList } from "./lists/dynamic-text-list";
 import "./styles.css";
 
-export const Form = () => {
+export interface FormProps {
+  onSubmit: (data: PageFormData) => void;
+}
+
+export const Form: FC<FormProps> = ({ onSubmit }) => {
   const form = useForm<PageFormData>({
     defaultValues: pageFormDefaultValues,
     resolver: yupResolver(pageFormSchema),
@@ -22,61 +27,39 @@ export const Form = () => {
     fields: languagesFields,
     append: appendLanguage,
     remove: removeLanguage,
-  } = useFieldArray({
-    name: "languages",
-    control,
-  });
+  } = useFieldArray({ name: "languages", control });
 
   const {
     fields: emailsFields,
     append: appendEmail,
     remove: removeEmail,
-  } = useFieldArray({
-    name: "emails",
-    control,
-  });
+  } = useFieldArray({ name: "emails", control });
 
   const {
     fields: countriesFields,
     append: appendCountry,
     remove: removeCountry,
-  } = useFieldArray({
-    name: "countries",
-    control,
-  });
+  } = useFieldArray({ name: "countries", control });
 
   const {
     fields: numbersFields,
     append: appendNumber,
     remove: removeNumber,
-  } = useFieldArray({
-    name: "numbers",
-    control,
-  });
+  } = useFieldArray({ name: "numbers", control });
 
   const {
     fields: approvalsFields,
     append: appendApprove,
     remove: removeApprove,
-  } = useFieldArray({
-    name: "approvals",
-    control,
-  });
+  } = useFieldArray({ name: "approvals", control });
 
   const {
     fields: textsFields,
     append: appendText,
     remove: removeText,
-  } = useFieldArray({
-    name: "texts",
-    control,
-  });
+  } = useFieldArray({ name: "texts", control });
 
   const { errors } = formState;
-
-  const onSubmit = (data: PageFormData) => {
-    console.log(data, { errors });
-  };
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
