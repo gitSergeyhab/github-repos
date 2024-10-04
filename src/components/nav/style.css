@@ -1,0 +1,22 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 3rem;
+  margin-bottom: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 2rem;
+  margin: auto;
+  background-color: var(--main-bg-color);
+  border-bottom: 2px solid var(--yellow);
+}
+
+.nav__link {
+  color: var(--gray);
+}
+
+.nav__link--active {
+  color: var(--yellow);
+}

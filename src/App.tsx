@@ -1,24 +1,18 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GithubList from "./pages/github-list";
 import "./App.css";
-import { RepoList } from "./components/repo-list";
-import { useFetchRepos } from "./hooks/use-fetch-repos";
+import FormPage from "./pages/form-page";
+import { Nav } from "./components/nav";
 
 function App() {
-  const { repos, status } = useFetchRepos(40);
-  console.log(repos, status);
-
-  if (status === "loading") {
-    return <p className="app__loading">Loading...</p>;
-  }
-
-  if (status === "error" || !repos) {
-    return <p className="app__error">Error</p>;
-  }
-
   return (
-    <section>
-      <h1>Repositories</h1>
-      <RepoList repos={repos} />
-    </section>
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<GithubList />} />
+        <Route path="/form" element={<FormPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
