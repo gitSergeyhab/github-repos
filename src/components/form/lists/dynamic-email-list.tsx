@@ -15,25 +15,28 @@ export const DynamicEmailList: FC<DynamicEmailListProps> = ({
   errors,
 }) => (
   <ul className="form__dynamic-list">
-    {emailFields.map((field, i) => (
-      <li key={field.id}>
-        <DynamicFieldItem
-          label="Добавьте электронную почту"
-          fieldId={`emails.${i}.email`}
-          index={i}
-          error={errors.emails?.[i]?.email?.message}
-          listLength={emailFields.length}
-          onAdd={onAdd}
-          onRemove={() => onRemove(i)}
-        >
-          <input
-            type="email"
-            id={`emails.${i}.email`}
-            className="form__dynamic-field"
-            {...register(`emails.${i}.email`)}
-          />
-        </DynamicFieldItem>
-      </li>
-    ))}
+    {emailFields.map((field, i) => {
+      const fieldId = `emails.${i}.email` as const;
+      return (
+        <li key={field.id}>
+          <DynamicFieldItem
+            label="Добавьте электронную почту"
+            fieldId={fieldId}
+            index={i}
+            error={errors.emails?.[i]?.email?.message}
+            listLength={emailFields.length}
+            onAdd={onAdd}
+            onRemove={() => onRemove(i)}
+          >
+            <input
+              type="email"
+              id={fieldId}
+              className="form__dynamic-field"
+              {...register(fieldId)}
+            />
+          </DynamicFieldItem>
+        </li>
+      );
+    })}
   </ul>
 );

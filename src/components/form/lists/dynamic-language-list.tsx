@@ -15,25 +15,28 @@ export const DynamicLanguageList: FC<DynamicLanguageListProps> = ({
   errors,
 }) => (
   <ul className="form__dynamic-list">
-    {languagesFields.map((field, i) => (
-      <li key={field.id}>
-        <DynamicFieldItem
-          label="Введите язык"
-          fieldId={`languages.${i}.title`}
-          index={i}
-          error={errors.languages?.[i]?.title?.message}
-          listLength={languagesFields.length}
-          onAdd={onAdd}
-          onRemove={() => onRemove(i)}
-        >
-          <input
-            type="text"
-            id={`languages.${i}.title`}
-            className="form__dynamic-field"
-            {...register(`languages.${i}.title`)}
-          />
-        </DynamicFieldItem>
-      </li>
-    ))}
+    {languagesFields.map((field, i) => {
+      const fieldId = `languages.${i}.title` as const;
+      return (
+        <li key={field.id}>
+          <DynamicFieldItem
+            label="Введите язык"
+            fieldId={fieldId}
+            index={i}
+            error={errors.languages?.[i]?.title?.message}
+            listLength={languagesFields.length}
+            onAdd={onAdd}
+            onRemove={() => onRemove(i)}
+          >
+            <input
+              type="text"
+              id={fieldId}
+              className="form__dynamic-field"
+              {...register(fieldId)}
+            />
+          </DynamicFieldItem>
+        </li>
+      );
+    })}
   </ul>
 );

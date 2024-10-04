@@ -15,25 +15,28 @@ export const DynamicTextList: FC<DynamicTextListProps> = ({
   errors,
 }) => (
   <ul className="form__dynamic-list">
-    {textsFields.map((field, i) => (
-      <li key={field.id}>
-        <DynamicFieldItem
-          label="Введите текст от 100 символов"
-          fieldId={`texts.${i}.text`}
-          index={i}
-          error={errors.texts?.[i]?.text?.message}
-          listLength={textsFields.length}
-          onAdd={onAdd}
-          onRemove={() => onRemove(i)}
-        >
-          <textarea
-            rows={4}
-            id={`texts.${i}.text`}
-            className="form__dynamic-field form__dynamic-field--textarea"
-            {...register(`texts.${i}.text`)}
-          />
-        </DynamicFieldItem>
-      </li>
-    ))}
+    {textsFields.map((field, i) => {
+      const fieldId = `texts.${i}.text` as const;
+      return (
+        <li key={field.id}>
+          <DynamicFieldItem
+            label="Введите текст от 100 символов"
+            fieldId={fieldId}
+            index={i}
+            error={errors.texts?.[i]?.text?.message}
+            listLength={textsFields.length}
+            onAdd={onAdd}
+            onRemove={() => onRemove(i)}
+          >
+            <textarea
+              rows={4}
+              id={fieldId}
+              className="form__dynamic-field form__dynamic-field--textarea"
+              {...register(fieldId)}
+            />
+          </DynamicFieldItem>
+        </li>
+      );
+    })}
   </ul>
 );

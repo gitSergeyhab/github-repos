@@ -1,6 +1,4 @@
 import { FC } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { pageFormDefaultValues, pageFormSchema } from "./const";
 import { PageFormData } from "./types";
 import { DynamicLanguageList } from "./lists/dynamic-language-list";
@@ -9,6 +7,8 @@ import { DynamicCountryList } from "./lists/dynamic-country-list";
 import { DynamicNumberList } from "./lists/dynamic-number-list";
 import { DynamicApproveList } from "./lists/dynamic-approve-list";
 import { DynamicTextList } from "./lists/dynamic-text-list";
+import { useAppForm } from "../../hooks/use-app-form";
+import { useAppFieldArray } from "../../hooks/use-app-field-array";
 import "./styles.css";
 
 export interface FormProps {
@@ -16,48 +16,44 @@ export interface FormProps {
 }
 
 export const Form: FC<FormProps> = ({ onSubmit }) => {
-  const form = useForm<PageFormData>({
-    defaultValues: pageFormDefaultValues,
-    resolver: yupResolver(pageFormSchema),
-  });
-
+  const form = useAppForm<PageFormData>(pageFormDefaultValues, pageFormSchema);
   const { register, handleSubmit, formState, control } = form;
 
   const {
     fields: languagesFields,
     append: appendLanguage,
     remove: removeLanguage,
-  } = useFieldArray({ name: "languages", control });
+  } = useAppFieldArray({ name: "languages", control });
 
   const {
     fields: emailsFields,
     append: appendEmail,
     remove: removeEmail,
-  } = useFieldArray({ name: "emails", control });
+  } = useAppFieldArray({ name: "emails", control });
 
   const {
     fields: countriesFields,
     append: appendCountry,
     remove: removeCountry,
-  } = useFieldArray({ name: "countries", control });
+  } = useAppFieldArray({ name: "countries", control });
 
   const {
     fields: numbersFields,
     append: appendNumber,
     remove: removeNumber,
-  } = useFieldArray({ name: "numbers", control });
+  } = useAppFieldArray({ name: "numbers", control });
 
   const {
     fields: approvalsFields,
     append: appendApprove,
     remove: removeApprove,
-  } = useFieldArray({ name: "approvals", control });
+  } = useAppFieldArray({ name: "approvals", control });
 
   const {
     fields: textsFields,
     append: appendText,
     remove: removeText,
-  } = useFieldArray({ name: "texts", control });
+  } = useAppFieldArray({ name: "texts", control });
 
   const { errors } = formState;
 

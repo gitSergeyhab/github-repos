@@ -15,26 +15,29 @@ export const DynamicApproveList: FC<DynamicApproveListProps> = ({
   errors,
 }) => (
   <ul className="form__dynamic-list">
-    {approvalsFields.map((field, i) => (
-      <li key={field.id}>
-        <DynamicFieldItem
-          label="Подтвердите чnо-нибудь"
-          fieldId={`approvals.${i}.approval`}
-          index={i}
-          error={errors.approvals?.[i]?.approval?.message}
-          listLength={approvalsFields.length}
-          onAdd={onAdd}
-          onRemove={() => onRemove(i)}
-          classNames="dynamic-checkbox"
-        >
-          <input
-            type="checkbox"
-            id={`approvals.${i}.approval`}
-            className="form__dynamic-field form__dynamic-field--checkbox"
-            {...register(`approvals.${i}.approval`)}
-          ></input>
-        </DynamicFieldItem>
-      </li>
-    ))}
+    {approvalsFields.map((field, i) => {
+      const fieldId = `approvals.${i}.approval` as const;
+      return (
+        <li key={field.id}>
+          <DynamicFieldItem
+            label="Подтвердите чnо-нибудь"
+            fieldId={fieldId}
+            index={i}
+            error={errors.approvals?.[i]?.approval?.message}
+            listLength={approvalsFields.length}
+            onAdd={onAdd}
+            onRemove={() => onRemove(i)}
+            classNames="dynamic-checkbox"
+          >
+            <input
+              type="checkbox"
+              id={fieldId}
+              className="form__dynamic-field form__dynamic-field--checkbox"
+              {...register(fieldId)}
+            ></input>
+          </DynamicFieldItem>
+        </li>
+      );
+    })}
   </ul>
 );
