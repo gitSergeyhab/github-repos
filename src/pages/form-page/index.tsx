@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Form } from "../../components/form";
-import { PageFormData } from "../../components/form/types";
 import { JsonText } from "../../components/json-text";
+import { Form } from "../../components/form";
 
 export default function FormPage() {
   const [formData, setFormData] = useState<string>("");
 
-  const onSubmit = (data: PageFormData) => {
+  const onSubmit = (data: object) => {
     setFormData(JSON.stringify(data, null, 2));
   };
 

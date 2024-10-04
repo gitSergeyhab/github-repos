@@ -1,0 +1,17 @@
+.dynamic__fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.dynamic__btn {
+  padding: 4px;
+  border: 2px solid var(--dark-gray);
+  transition: color 0.3s ease-in-out;
+}
+
+.dynamic__btn--del:hover {
+  grid-area: del;
+  color: var(--red);
+}

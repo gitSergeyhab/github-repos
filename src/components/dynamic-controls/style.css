@@ -1,0 +1,29 @@
+.dynamic-error {
+  width: 100%;
+  color: var(--red);
+  margin: 0;
+}
+
+.dynamic-control__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dynamic-input {
+  width: 100%;
+  min-height: 2rem;
+}
+
+.dynamic-control {
+  min-height: 2rem;
+}
+
+.dynamic-control--textarea {
+  resize: vertical;
+  width: 100%;
+}
+
+.dynamic-control--checkbox {
+  min-height: auto;
+}
