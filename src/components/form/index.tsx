@@ -1,7 +1,9 @@
 import { FC } from "react";
 import { DynamicFieldset } from "../dynamic-fieldset";
 import {
+  DynamicCheckboxGroup,
   DynamicInput,
+  DynamicRadioGroup,
   DynamicSelect,
   DynamicTextarea,
 } from "../dynamic-controls";
@@ -16,10 +18,8 @@ import {
 import { PageFormData } from "./types";
 import { useAppFieldArray } from "../../hooks/use-app-field-array";
 import { useAppForm } from "../../hooks/use-app-form";
-import { DynamicCheckboxGroup } from "../dynamic-controls/dynamic-checkbox-group";
 import { getCheckboxGroupError } from "../../helpers/error";
 import "./style.css";
-import { DynamicRadioGroup } from "../dynamic-controls/dynamic-radio-group";
 
 export interface FormProps {
   onSubmit: (data: PageFormData) => void;
@@ -47,6 +47,13 @@ export const Form: FC<FormProps> = ({ onSubmit }) => {
               label="1 или несколько городов (checkbox group)"
               error={getCheckboxGroupError(errors.info?.[i]?.cities)}
             />
+            <DynamicCheckboxGroup
+              id={`info.${i}.colors`}
+              options={colors}
+              control={control}
+              label="1 или несколько цветов (checkbox group)"
+              error={getCheckboxGroupError(errors.info?.[i]?.colors)}
+            />
             <DynamicRadioGroup
               control={control}
               id={`info.${i}.city`}
@@ -61,13 +68,6 @@ export const Form: FC<FormProps> = ({ onSubmit }) => {
               options={colors}
               error={errors.info?.[i]?.color?.message}
               label="1 Цвет (radio group)"
-            />
-            <DynamicCheckboxGroup
-              id={`info.${i}.colors`}
-              options={colors}
-              control={control}
-              label="1 или несколько цветов (checkbox group)"
-              error={getCheckboxGroupError(errors.info?.[i]?.colors)}
             />
             <DynamicInput
               label="Язык (input/text)"
