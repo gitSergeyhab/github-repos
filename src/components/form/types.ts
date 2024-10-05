@@ -5,6 +5,10 @@ export interface PageFormInfo {
   number: number;
   approval: boolean;
   text: string;
+  color: string;
+  cities: string[];
+  colors: string[];
+  city: string;
 }
 
 export interface PageFormData {

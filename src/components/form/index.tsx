@@ -5,33 +5,70 @@ import {
   DynamicSelect,
   DynamicTextarea,
 } from "../dynamic-controls";
-import { countries, defaultInfo, pageFormDefaultValues, schema } from "./const";
+import {
+  cities,
+  colors,
+  countries,
+  defaultInfo,
+  pageFormDefaultValues,
+  schema,
+} from "./const";
 import { PageFormData } from "./types";
 import { useAppFieldArray } from "../../hooks/use-app-field-array";
 import { useAppForm } from "../../hooks/use-app-form";
+import { DynamicCheckboxGroup } from "../dynamic-controls/dynamic-checkbox-group";
+import { getCheckboxGroupError } from "../../helpers/error";
 import "./style.css";
+import { DynamicRadioGroup } from "../dynamic-controls/dynamic-radio-group";
 
 export interface FormProps {
   onSubmit: (data: PageFormData) => void;
 }
 export const Form: FC<FormProps> = ({ onSubmit }) => {
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useAppForm<PageFormData>(pageFormDefaultValues, schema);
+  const { control, register, handleSubmit, formState } =
+    useAppForm<PageFormData>(pageFormDefaultValues, schema);
 
   const { fields, append, remove } = useAppFieldArray({
     control,
     name: "info",
   });
 
+  const { errors } = formState;
+
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       {fields.map((field, i) => (
         <div key={field.id}>
           <DynamicFieldset index={i} onRemove={() => remove(i)}>
+            <DynamicCheckboxGroup
+              id={`info.${i}.cities`}
+              options={cities}
+              control={control}
+              label="1 или несколько городов (checkbox group)"
+              error={getCheckboxGroupError(errors.info?.[i]?.cities)}
+            />
+            <DynamicRadioGroup
+              control={control}
+              id={`info.${i}.city`}
+              options={cities}
+              error={errors.info?.[i]?.city?.message}
+              label="1 Город с самым длинным и красивым названием (radio group)"
+              classNames="dynamic-control--group-column"
+            />
+            <DynamicRadioGroup
+              control={control}
+              id={`info.${i}.color`}
+              options={colors}
+              error={errors.info?.[i]?.color?.message}
+              label="1 Цвет (radio group)"
+            />
+            <DynamicCheckboxGroup
+              id={`info.${i}.colors`}
+              options={colors}
+              control={control}
+              label="1 или несколько цветов (checkbox group)"
+              error={getCheckboxGroupError(errors.info?.[i]?.colors)}
+            />
             <DynamicInput
               label="Язык (input/text)"
               type="text"

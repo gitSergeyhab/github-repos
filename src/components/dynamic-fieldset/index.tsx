@@ -13,7 +13,9 @@ export const DynamicFieldset: FC<DynamicFieldsetProps> = ({
 }) => {
   return (
     <fieldset className="dynamic__fieldset">
-      <legend>Dynamic Fieldset #{index + 1}</legend>
+      <legend className="dynamic__legend dynamic__legend--main">
+        Dynamic Fieldset #{index + 1}
+      </legend>
       {children}
       {index !== 0 && (
         <button

@@ -25,3 +25,7 @@
 .form__btn--add:hover {
   color: var(--green);
 }
+
+.form__main-fieldset {
+  color: var(--yellow);
+}

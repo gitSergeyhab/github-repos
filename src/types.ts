@@ -13,3 +13,10 @@ export interface Repo {
 export type Language = "TypeScript" | "JavaScript" | "Python" | "HTML";
 
 export type Status = "idle" | "loading" | "success" | "error";
+
+// export interface FieldError {
+//   message: string;
+//   [key: string]: unknown;
+// }
+
+// export type FieldErrors = FieldError | (FieldError | undefined)[];

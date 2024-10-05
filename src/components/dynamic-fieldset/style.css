@@ -15,3 +15,7 @@
   grid-area: del;
   color: var(--red);
 }
+
+.dynamic__legend--main {
+  color: var(--yellow);
+}
